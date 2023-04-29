@@ -28,7 +28,7 @@ async function getChocolate(){
 //   const chocolate = await chocolatePromise;
 //   return `${strawberry}+ ${chocolate}`;
 // }
-//* useful Promise APIs
+//* useful APIs ✨
 function pickAllFoods() {
   return Promise.all([getStrawberry(), getChocolate()]).then(foods => 
     foods.join(' + ')
@@ -36,6 +36,10 @@ function pickAllFoods() {
 }
 pickAllFoods().then(console.log);
 
+function pickOnlyOne (){
+  return Promise.race([getStrawberry(),getChocolate()]);
+}
+pickOnlyOne().then(console.log);
 
 
 //Promise
