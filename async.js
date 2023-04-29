@@ -21,11 +21,13 @@ async function getChocolate(){
   await delay(3000);
   return '🍫';
 }
-//Callback Hell 비슷해진다 .
-function pickFoods(){
-  return getStrawberry().then(strawberry => {
-    return getChocolate().then (chocolate => `${strawberry} + ${chocolate}`);
-  });
+//! 병렬적으로 실행하기 
+async function pickFoods() {
+  const strawberryPromise = getStrawberry();
+  const chocolatePromise = getChocolate();
+  const strawberry = await strawberryPromise;
+  const chocolate = await chocolatePromise;
+  return `${strawberry}+ ${chocolate}`;
 }
 
 pickFoods().then(console.log);
