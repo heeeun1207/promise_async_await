@@ -20,7 +20,7 @@ promise
 })
 // 3. Promise chaining
 const fetchNumber = new Promise((resolve, reject)=>{
-  setTimeout(() => resolve(1), 1000);
+ setTimeout(() => resolve(1), 1000);
 })
 fetchNumber
 .then(num => num * 2 )
@@ -32,6 +32,7 @@ fetchNumber
 })
 .then(num => console.log(num));
 
+
 //4. Error Handling 
 const getHen = () =>
 new Promise ((resolve , reject) => {
@@ -39,7 +40,7 @@ new Promise ((resolve , reject) => {
 });
 const getEgg = hen =>
 new Promise((resolve , reject ) => {
-	setTimeout(() => resolve(`${hen} => 🥚`),1000);
+	setTimeout(() => reject(new Error(`error! ${hen} => 🥚`)),1000);
 });
 const cook = egg => 
 new Promise((resolve ,reject ) => {
@@ -54,5 +55,10 @@ new Promise((resolve ,reject ) => {
 //다른 함수로 바로 호출하는경우 생략 가능
 getHen() // 
 .then(getEgg)
+.catch(error => {
+  return '🥐';
+})  //.catch 처리로 요리(Promise chaining )가 완성되게 할 수 있다.  
 .then(cook)
-.then(console.log);
+.then(console.log)
+.catch(console.log);
+
