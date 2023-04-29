@@ -16,21 +16,26 @@ async function getStrawberry() {
   await delay(3000);
   return '🍓';
 }
-
 async function getChocolate(){
   await delay(3000);
   return '🍫';
 }
-//! 병렬적으로 실행하기 
-async function pickFoods() {
-  const strawberryPromise = getStrawberry();
-  const chocolatePromise = getChocolate();
-  const strawberry = await strawberryPromise;
-  const chocolate = await chocolatePromise;
-  return `${strawberry}+ ${chocolate}`;
+//병렬적으로 실행하기 
+// async function pickFoods() {
+//   const strawberryPromise = getStrawberry();
+//   const chocolatePromise = getChocolate();
+//   const strawberry = await strawberryPromise;
+//   const chocolate = await chocolatePromise;
+//   return `${strawberry}+ ${chocolate}`;
+// }
+//* useful Promise APIs
+function pickAllFoods() {
+  return Promise.all([getStrawberry(), getChocolate()]).then(foods => 
+    foods.join(' + ')
+    );
 }
+pickAllFoods().then(console.log);
 
-pickFoods().then(console.log);
 
 
 //Promise
