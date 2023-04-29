@@ -20,7 +20,7 @@ promise
 })
 // 3. Promise chaining
 const fetchNumber = new Promise((resolve, reject)=>{
- setTimeout(() => resolve(1), 1000);
+    setTimeout(() => resolve(1), 1000);
 })
 fetchNumber
 .then(num => num * 2 )
